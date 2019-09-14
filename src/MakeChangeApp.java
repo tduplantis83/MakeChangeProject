@@ -24,10 +24,10 @@ public class MakeChangeApp {
 			change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
 					formatter.format(makeChange(amtTendered, itemPrice)).length()));
 			
-			System.out.println("*\tItem Price: $" + itemPrice + "\t\t*");
-			System.out.println("*\tAmount Tendered: $" + amtTendered + "\t*");
-			System.out.println("------------------------------------");
-			System.out.println("*\tYour change is: $" + change + "\t\t*");
+			System.out.println("*****************************************");
+			System.out.println("Item Price: " + formatter.format(itemPrice));
+			System.out.println("Amount Tendered: " + formatter.format(amtTendered));
+			System.out.println("Your change is: $" + change);
 			buildChangeString(change);
 		}
 
@@ -58,9 +58,9 @@ public class MakeChangeApp {
 			hundreds = cents / 10000;
 			cents -= hundreds * 10000;
 			if (hundreds > 1) {
-				changeString += "" + hundreds + " $100 bills, ";
+				changeString += "\t" + hundreds + " $100 bills\n";
 			} else if (hundreds == 1) {
-				changeString += "" + hundreds + " $100 bill, ";
+				changeString += "\t" + hundreds + " $100 bill\n";
 			}
 		}
 		// fifties
@@ -68,9 +68,9 @@ public class MakeChangeApp {
 			fifties = cents / 5000;
 			cents -= fifties * 5000;
 			if (fifties > 1) {
-				changeString += "" + fifties + " $50 bills, ";
+				changeString += "\t" + fifties + " $50 bills\n";
 			} else if (fifties == 1) {
-				changeString += "" + fifties + " $50 bill, ";
+				changeString += "\t" + fifties + " $50 bill\n";
 			}
 		}
 		// twenties
@@ -78,9 +78,9 @@ public class MakeChangeApp {
 			twenties = cents / 2000;
 			cents -= twenties * 2000;
 			if (twenties > 1) {
-				changeString += "" + twenties + " $20 bills, ";
+				changeString += "\t" + twenties + " $20 bills\n";
 			} else if (twenties == 1) {
-				changeString += "" + twenties + " $20 bill, ";
+				changeString += "\t" + twenties + " $20 bill\n";
 			}
 		}
 		// tens
@@ -88,9 +88,9 @@ public class MakeChangeApp {
 			tens = cents / 1000;
 			cents -= tens * 1000;
 			if (tens > 1) {
-				changeString += "" + tens + " $10 bills, ";
+				changeString += "\t" + tens + " $10 bills\n";
 			} else if (tens == 1) {
-				changeString += "" + tens + " $10 bill, ";
+				changeString += "\t" + tens + " $10 bill\n";
 			}
 		}
 		// fives
@@ -98,9 +98,9 @@ public class MakeChangeApp {
 			fives = cents / 500;
 			cents -= fives * 500;
 			if (fives > 1) {
-				changeString += "" + fives + " $5 bills, ";
+				changeString += "\t" + fives + " $5 bills\n";
 			} else if (fives == 1) {
-				changeString += "" + fives + " $5 bill, ";
+				changeString += "\t" + fives + " $5 bill\n";
 			}
 		}
 		// ones
@@ -108,9 +108,9 @@ public class MakeChangeApp {
 			ones = cents / 100;
 			cents -= ones * 100;
 			if (ones > 1) {
-				changeString += "" + ones + " $1 bills, ";
+				changeString += "\t" + ones + " $1 bills\n";
 			} else if (ones == 1) {
-				changeString += "" + ones + " $1 bill, ";
+				changeString += "\t" + ones + " $1 bill\n";
 			}
 		}
 
@@ -120,9 +120,9 @@ public class MakeChangeApp {
 			fiftyCents = cents / 50;
 			cents -= fiftyCents * 50;
 			if (fiftyCents > 1) {
-				changeString += "" + fiftyCents + " Fifty Cent Pieces, ";
+				changeString += "\t" + fiftyCents + " Fifty Cent Pieces\n";
 			} else if (fiftyCents == 1) {
-				changeString += "" + fiftyCents + " Fifty Cent Piece, ";
+				changeString += "\t" + fiftyCents + " Fifty Cent Piece\n";
 
 			}
 		}
@@ -131,9 +131,9 @@ public class MakeChangeApp {
 			quarters = cents / 25;
 			cents -= quarters * 25;
 			if (quarters > 1) {
-				changeString += "" + quarters + " Quarters, ";
+				changeString += "\t" + quarters + " Quarters\n";
 			} else if (quarters == 1) {
-				changeString += "" + quarters + " Quarter, ";
+				changeString += "\t" + quarters + " Quarter\n";
 			}
 		}
 		// dimes
@@ -141,9 +141,9 @@ public class MakeChangeApp {
 			dimes = cents / 10;
 			cents -= dimes * 10;
 			if (dimes > 1) {
-				changeString += "" + dimes + " Dimes, ";
+				changeString += "\t" + dimes + " Dimes\n";
 			} else if (dimes == 1) {
-				changeString += "" + dimes + " Dime, ";
+				changeString += "\t" + dimes + " Dime\n";
 			}
 		}
 		// nickels
@@ -151,9 +151,9 @@ public class MakeChangeApp {
 			nickels = cents / 5;
 			cents -= nickels * 5;
 			if (nickels > 1) {
-				changeString += "" + nickels + " Nickels, ";
+				changeString += "\t" + nickels + " Nickels\n";
 			} else if (nickels == 1) {
-				changeString += "" + nickels + " Nickel, ";
+				changeString += "\t" + nickels + " Nickel\n";
 			}
 		}
 		// pennies
@@ -161,9 +161,9 @@ public class MakeChangeApp {
 			pennies = cents / 1;
 			cents -= pennies * 1;
 			if (pennies > 1) {
-				changeString += "" + pennies + " Pennies ";
+				changeString += "\t" + pennies + " Pennies\n";
 			} else if (pennies == 1) {
-				changeString += "" + pennies + " Penny ";
+				changeString += "\t" + pennies + " Penny\n";
 			}
 		}
 
