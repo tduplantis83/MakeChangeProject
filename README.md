@@ -20,21 +20,21 @@ This is a console app:
 java.util.Scanner
 java.text.NumberFormat
 data types:
-  ..*double
-  ..*boolean
-  ..*int
-  ..*String
+  *double
+  *boolean
+  *int
+  *String
 conversions:
-  ..*implicit
-  ..*explicit
-  **promotions
+  *implicit
+  *explicit
+  *promotions
 loops:
-  ..*while
-  ..*if
-  ..*break
-  ..*continue
+  *while
+  *if
+  *break
+  *continue
 conditionals:
-  ..*if/else if/else
+  *if/else if/else
 arithmetic/calculations
 Methods (with parameters & return values)
 
