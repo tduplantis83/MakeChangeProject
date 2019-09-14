@@ -19,17 +19,15 @@ public class MakeChangeApp {
 				continue;
 			}
 
-			// NumberFormat formats the change double into a money String
+			// formats the change into a money String
 			NumberFormat formatter = NumberFormat.getCurrencyInstance();
-			// Double.parseDouble converts a string back to a double
-			// substring goes from the $ to the end
 			change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
 					formatter.format(makeChange(amtTendered, itemPrice)).length()));
 			
 			System.out.println("*****************************************");
 			System.out.println("Item Price: " + formatter.format(itemPrice));
 			System.out.println("Amount Tendered: " + formatter.format(amtTendered));
-			System.out.println("Your change is: $" + change);
+			System.out.println("Your change is: " + formatter.format(change));
 			buildChangeString(change);
 		}
 
@@ -163,7 +161,7 @@ public class MakeChangeApp {
 			pennies = cents / 1;
 			cents -= pennies * 1;
 			if (pennies > 1) {
-				changeString += "\t" + pennies + " Pennies\n";
+				changeString += "\t" + pennies + " Pennies";
 			} else if (pennies == 1) {
 				changeString += "\t" + pennies + " Penny";
 			}
@@ -203,7 +201,8 @@ public class MakeChangeApp {
 	}
 
 	private static void registerWelcome() {
-		System.out.println("*****Welcome to the Cash Register*****");
+		System.out.println("******Welcome to the Cash Register******");
 	}
 
 }
+
