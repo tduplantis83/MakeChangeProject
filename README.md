@@ -17,26 +17,26 @@ This is a console app:
 3. The Item Price and Amount Tendered will be reformatted as currency and displayed in the console, along with the amount of change due, and the proper bills and coins used to make that change.
 
 ### Technologies/Topics Used
-java.util.Scanner
-java.text.NumberFormat
-data types:
+1. java.util.Scanner
+2. java.text.NumberFormat
+3. data types:
   *double
   *boolean
   *int
   *String
-conversions:
+4. conversions:
   *implicit
   *explicit
   *promotions
-loops:
+5. loops:
   *while
   *if
   *break
   *continue
-conditionals:
+6. conditionals:
   *if/else if/else
-arithmetic/calculations
-Methods (with parameters & return values)
+7. arithmetic/calculations
+8. Methods (with parameters & return values)
 
 ### Lessons Learned
 I learned the importance of working out the app logic prior to starting coding.
