@@ -23,8 +23,11 @@ public class MakeChangeApp {
 			NumberFormat formatter = NumberFormat.getCurrencyInstance();
 			change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
 					formatter.format(makeChange(amtTendered, itemPrice)).length()));
-
-			System.out.println("Your change is: $" + change);
+			
+			System.out.println("*\tItem Price: $" + itemPrice + "\t\t*");
+			System.out.println("*\tAmount Tendered: $" + amtTendered + "\t*");
+			System.out.println("------------------------------------");
+			System.out.println("*\tYour change is: $" + change + "\t\t*");
 			buildChangeString(change);
 		}
 
