@@ -19,8 +19,10 @@ public class MakeChangeApp {
 				continue;
 			}
 
-			// formats the change into a money String
+			// NumberFormat formats the change double into a money String
 			NumberFormat formatter = NumberFormat.getCurrencyInstance();
+			// Double.parseDouble converts a string back to a double
+			// substring goes from the $ to the end
 			change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
 					formatter.format(makeChange(amtTendered, itemPrice)).length()));
 			
@@ -163,7 +165,7 @@ public class MakeChangeApp {
 			if (pennies > 1) {
 				changeString += "\t" + pennies + " Pennies\n";
 			} else if (pennies == 1) {
-				changeString += "\t" + pennies + " Penny\n";
+				changeString += "\t" + pennies + " Penny";
 			}
 		}
 
