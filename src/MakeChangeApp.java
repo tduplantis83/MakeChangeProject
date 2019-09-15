@@ -6,30 +6,27 @@ public class MakeChangeApp {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		double itemPrice, amtTendered, change;
-		boolean loop = true;
+		// formats the change into a money String
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
-		while (loop) {
-
-			registerWelcome();
+				registerWelcome();
 			itemPrice = getItemPrice(input);
 			amtTendered = getAmtTendered(input);
-			loop = checkAmtTendered(amtTendered, itemPrice);
-
-			if (loop) {
-				continue;
-			}
-
-			// formats the change into a money String
-			NumberFormat formatter = NumberFormat.getCurrencyInstance();
-			change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
-					formatter.format(makeChange(amtTendered, itemPrice)).length()));
+			amtTendered = checkAmtTendered(amtTendered, itemPrice, formatter, input);
 			
-			System.out.println("*****************************************");
-			System.out.println("Item Price: " + formatter.format(itemPrice));
-			System.out.println("Amount Tendered: " + formatter.format(amtTendered));
-			System.out.println("Your change is: " + formatter.format(change));
-			buildChangeString(change);
-		}
+			if(amtTendered > 0) {
+				change = Double.parseDouble(formatter.format(makeChange(amtTendered, itemPrice)).substring(1,
+						formatter.format(makeChange(amtTendered, itemPrice)).length()));
+				
+				System.out.println("*****************************************");
+				System.out.println("Item Price: " + formatter.format(itemPrice));
+				System.out.println("Amount Tendered: " + formatter.format(amtTendered));
+				System.out.println("Your change is: " + formatter.format(change));
+				buildChangeString(change);
+			}
+			else {
+				System.out.println("Take your money back and get out of my store. NO SOUP FOR YOU!");
+			}
 
 		input.close();
 	}
@@ -180,13 +177,52 @@ public class MakeChangeApp {
 		return amt - price;
 	}
 
-	private static boolean checkAmtTendered(double amt, double price) {
+	private static double checkAmtTendered(double amt, double price, NumberFormat nf, Scanner i) {
 
+		double newAmt = 0;
+			
 		if (amt < price) {
-			System.out.println("!!!!ERROR: The amount tendered is too low! Try again!!!!");
-			return true;
-		} else {
-			return false;
+			System.out.println("\nThe amount tendered is too low! You still owe " + (nf.format(price - amt)));
+			
+			System.out.print("Do you want to pay the rest now? (Y/N): ");
+			if (i.next().equalsIgnoreCase("y")) {
+
+				do {
+					 newAmt = getRemainingDue(Double.parseDouble(nf.format(price - amt).substring(1,(nf.format(price - amt)).length())), price, i, nf); 
+				} while(newAmt < price);
+				
+				return newAmt;
+			}
+			else {
+				return 0.0;
+			}
+		} 
+		else {
+			return amt;
+		}
+		
+	}
+
+	private static double getRemainingDue(double amtRemaining, double price, Scanner i, NumberFormat nf) {
+		
+		while(true) {
+			System.out.print("Please enter " + nf.format(amtRemaining) + " to pay what you still owe: ");
+			double nextAmt = i.nextDouble();
+			
+			if(nextAmt == amtRemaining) {
+				return price;
+			}
+			else if (nextAmt > amtRemaining) {
+				System.out.println("\nOK. You gave me a little more than what you still owed.\nI can work with that...");
+				return Double.parseDouble(nf.format((nextAmt - amtRemaining) + price).substring(1,(nf.format((nextAmt - amtRemaining) + price).length())));
+			}
+			else {
+				System.out.println("\nI'm sorry, but you still haven't paid enough....\nWhy are you being so difficult?!?!??");
+				amtRemaining -= nextAmt;
+				amtRemaining = Double.parseDouble(nf.format(amtRemaining).substring(1,(nf.format(amtRemaining)).length()));
+				System.out.println("Now you still owe me $" + amtRemaining);
+				continue;
+			}
 		}
 	}
 
@@ -201,7 +237,7 @@ public class MakeChangeApp {
 	}
 
 	private static void registerWelcome() {
-		System.out.println("******Welcome to the Cash Register******");
+		System.out.println("******Welcome to the Cash Register!******");
 	}
 
 }
